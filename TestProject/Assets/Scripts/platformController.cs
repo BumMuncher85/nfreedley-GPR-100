@@ -28,8 +28,8 @@ public class MoveDown : MonoBehaviour
         if (collision.tag == "Player") {
             if (touched == false)
             {
-                player.GetComponent<playerController>().score += 5;
-                print(player.GetComponent<playerController>().score);
+                //player.GetComponent<playerController>().score += 5;
+                //print(player.GetComponent<playerController>().score);
             }
 
         }

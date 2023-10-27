@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class platformGenerator : MonoBehaviour
@@ -10,11 +11,12 @@ public class platformGenerator : MonoBehaviour
     public float maxSpawnPosition = 5.0f;
     public Vector3 spawnPosition;
     public GameObject platform;
+    public Transform player;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("spawnPlatform", 0f, 1.7f);
+        InvokeRepeating("spawnPlatform", 0f, 1.5f);
     }
 
     // Update is called once per frame
@@ -25,8 +27,15 @@ public class platformGenerator : MonoBehaviour
 
     void spawnPlatform()
     {
-        spawnPosition = new Vector3(Random.Range(minSpawnPosition, maxSpawnPosition), 5.5f, 0f);
+        if (player.position.y > 0)
+        {
+            spawnPosition = new Vector3(Random.Range(minSpawnPosition, maxSpawnPosition), 5.5f, 0f);
 
-        Instantiate(platform, spawnPosition, Quaternion.identity);
+            Instantiate(platform, spawnPosition, Quaternion.identity);
+
+            spawnPosition = new Vector3(Random.Range(minSpawnPosition, maxSpawnPosition), 5.5f, 0f);
+
+            Instantiate(platform, spawnPosition, Quaternion.identity);
+        }
     }
 }
